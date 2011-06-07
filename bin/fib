@@ -1,0 +1,28 @@
+#! /usr/bin/env ruby -w
+require File.join( File.dirname( __FILE__ ), "common" )
+#
+# fib
+# ===
+#
+# Fibonacci sequence generator
+#
+# USAGE: fib NUM
+#
+#    where NUM is the number of elements of the Fibonacci sequence to
+#    print.
+#
+#   fib 1
+#   1
+#
+#   fib 6
+#   1
+#   1
+#   2
+#   3
+#   5
+#   8
+#
+
+require "fibonacci"
+
+FibonacciApp.new(*ARGV).run

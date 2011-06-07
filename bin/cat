@@ -1,0 +1,32 @@
+#! /usr/bin/env ruby -w
+#
+# cat
+# ===
+#
+# A simple program that prints all the files passed to it on the
+# command line.
+#
+# USAGE:
+#
+#   cat my_file.txt
+#
+#   cat file1 file2 file3
+# 
+
+
+# Take each of the parameters passed in
+ARGV.each do |filename|
+
+  # open them for reading
+  File.open( filename, "r" ) do |fd|
+
+    # Take each of the lines in the file
+    fd.each_line do |line|
+
+      # print the line to stdout
+      $stdout.puts line
+
+    end # done with the file's lines
+  end # done reading the file
+end # done processing arguments
+

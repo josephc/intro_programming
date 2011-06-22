@@ -5,3 +5,5 @@ require 'hello'
 
 app = Hello.new
 app.prompt
+app.prompt_read
+app.hello

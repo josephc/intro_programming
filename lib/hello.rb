@@ -1,21 +1,23 @@
 class Hello
   def initialize
-    @console = $stdout
+    @output_console = $stdout
+    @input_console = $stdin
   end
 
-  def name
-    nil
-  end
+  attr_reader :name
+  attr_accessor :input_console, :output_console
 
-  def console=(console)
-    @console = console
-  end
-
-  def console
-    @console
-  end
+  # DRY = "don't repeat yourself"
 
   def prompt
-    @console.puts "What's your name?"
+    @output_console.puts "What's your name?"
+  end
+
+  def prompt_read
+    @name = @input_console.gets.chomp
+  end
+
+  def hello
+    @output_console.puts "Hi, #{@name}!"
   end
 end

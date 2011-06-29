@@ -1,0 +1,8 @@
+#! /usr/bin/env ruby -w
+require File.join( File.dirname( __FILE__), "common")
+
+require 'hello'
+
+app = Hello.new
+app.prompt
+app.hey_there

@@ -18,7 +18,7 @@ class TestHelloCsv < Test::Unit::TestCase
     app = HelloCsv.new
     app.use_csv("fixtures/test_hello.csv")
     assert_equal([
-        %Q{84873963,6/23/07 22:32,TRUE,148771554,,6/23/07 22:20,FALSE,amt,1,3103492,USA,FL,Miami,99.61.61.230,http://imdb.com/name/nm0002091/,http://www.imdb.com/name/nm0002091/,FALSE,FALSE,http://en.wikipedia.org/wiki/Michael_Gambon/,http://en.wikipedia.org/wiki/Michael_Gambon,,Oct 19 1940 12:00AM,,Michael,M,71763,http://imdb.com/name/nm0002091/,Gambon,,"Dublin, Ireland",,,,,,http://en.wikipedia.org/wiki/Michael_Gambon/"}.parse_csv,
+        %Q{84873996,6/23/07 22:32,TRUE,148771553,,6/23/07 22:20,FALSE,amt,1,3103492,USA,FL,Miami,99.61.61.230,http://imdb.com/name/nm0172472/,http://www.imdb.com/name/nm0172472/,FALSE,FALSE,http://en.wikipedia.org/wiki/Lauren_Collins/,http://en.wikipedia.org/wiki/Lauren_Collins,,Aug 29 1986 12:00AM,,Lauren,F,173761,http://imdb.com/name/nm0172472/,Collins,,"Thornhill, Toronto, Ontario",,,,,,http://en.wikipedia.org/wiki/Lauren_Collins/}.parse_csv,
         %Q{84873996,6/23/07 22:42,TRUE,148776882,,6/23/07 22:36,FALSE,prodege,1,3094291,USA,CA,Burbank,204.128.192.4,http://imdb.com/name/nm0172472/,http://www.imdb.com/name/nm0172472/,FALSE,FALSE,http://en.wikipedia.org/wiki/Lauren_Collins/,http://en.wikipedia.org/wiki/Lauren_Collins,,Aug 29 1986 12:00AM,,Lauren,F,173761,http://imdb.com/name/nm0172472/,Collins,,"Thornhill, Toronto, Ontario",,,,,,http://en.wikipedia.org/wiki/Lauren_Collins/}.parse_csv
       ], app.filter("84873996"))
   end

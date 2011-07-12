@@ -25,3 +25,9 @@ class Hello
     end
   end
 end
+
+# take full csv
+# prompt for unit_id
+# output the data associated with this unit_id 
+# the excel filter is equivalant
+# job 54054

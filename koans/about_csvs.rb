@@ -4,7 +4,45 @@ require 'fastercsv'
 # FasterCSV has a lot of extra functionality but these will get you
 # started with turning the csv into something that you can manipulate
 # with ruby.
+#
+# Full documentation and more examples for the fastercsv library are
+# available at: http://fastercsv.rubyforge.org.
 class AboutCsvs < EdgeCase::Koan
+
+  # Reading it as a FasterCSV::Row (similar to a hash) provides easier
+  # access to columns by name
+  def test_reading_each_line_as_a_csv_row
+    csv_array_of_rows = FasterCSV.readlines("example_csv.csv", :headers => true)
+    
+    assert_equal __, csv_array_of_rows.size
+    assert_equal __, csv_array_of_rows[0]["_unit_id"]
+    assert_equal __, csv_array_of_rows[0]["_channel"]
+    assert_equal __, csv_array_of_rows[0]["_golden"]
+    assert_equal __, csv_array_of_rows[0]["_id"]
+    assert_equal __, csv_array_of_rows[0]["_tainted"]
+    assert_equal __, csv_array_of_rows[0]["THIS_COLUMN_DOES_NOT_EXIST"]
+  end
+
+  # Reading the csv as a table does some special things to the headers
+  # and values. Particularly it turns numbers into numbers in ruby,
+  # and it turns the headers into symbols.
+  def test_reading_a_csv_as_a_table
+    csv_array_of_rows = FasterCSV.table("example_csv.csv")
+
+    assert_equal __, csv_array_of_rows.size
+    
+    # if table turns the headers into symbols what will be the value
+    # when we try to access a header using a string?
+    assert_equal __, csv_array_of_rows[1]["_unit_id"]
+
+    assert_equal __, csv_array_of_rows[1][:_unit_id]
+    assert_equal __, csv_array_of_rows[1][:_channel]
+    assert_equal __, csv_array_of_rows[1][:_golden]
+    assert_equal __, csv_array_of_rows[1][:_id]
+    assert_equal __, csv_array_of_rows[1][:_tainted]
+    assert_equal __, csv_array_of_rows[1][:THIS_COLUMN_DOES_NOT_EXIST]
+  end
+
   def test_reading_a_csv_as_an_array_of_arrays
     csv = FasterCSV.readlines("example_csv.csv")
 
@@ -50,16 +88,17 @@ class AboutCsvs < EdgeCase::Koan
 
   def test_creating_a_csv_line_as_a_string_2
     values = ["234", "amt", "Terrific", "0.9344"]
-    assert_equal __, FasterCSV.generate_line(header)
+    assert_equal __, FasterCSV.generate_line(values)
   end
 
   def test_creating_a_csv_line_as_a_string_2
     values = ["8438", "gambit", "Terrific, Outstanding, Work", "0.8336"]
-    assert_equal __, FasterCSV.generate_line(header)
+    assert_equal __, FasterCSV.generate_line(values)
   end
 
   def test_parsing_a_csvline_from_a_string
     assert_equal __, "3423,person,good,0.9336".to_csv
+    assert_equal __, FasterCSV.parse("3423,person,good,0.9336")
   end
 
   def test_writing_a_csv_to_a_file

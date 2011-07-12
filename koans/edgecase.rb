@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # -*- ruby -*-
 
+require 'rubygems'
 require 'test/unit/assertions'
 
 # --------------------------------------------------------------------

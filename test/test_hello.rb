@@ -33,6 +33,13 @@ class TestHello < Test::Unit::TestCase
       @name
     end
   end
+  def test_prompt
+    app = Hello.new
+    output_console = FakeOutputConsole.new
+    app.output_console = output_console
+    app.prompt
+    assert_equal "What's your name?", output_console.read 
+  end
 
   def test_default_console
     app = Hello.new
@@ -40,27 +47,19 @@ class TestHello < Test::Unit::TestCase
     assert_equal $stdin, app.input_console
   end
 
-  def test_prompt
-    app = Hello.new
-    output_console = FakeOutputConsole.new
-    app.output_console = output_console
-    app.prompt
-    assert_equal "What's your last name?", output_console.read 
-  end
-
-  def test_prompt_again
+  def test_read_prompt
     app = Hello.new
     input_console = FakeInputConsole.new
-    input_console.set "George"
+    input_console.set "George\n"
     app.input_console = input_console
-    app.prompt
+    app.prompt_read
     assert_equal "George", app.name
-  end
 
-  # def test_hey_there
-  #   output_console = FakeOutputConsole.new
-  #   app.output_console = output_console
-  #   app.hello
-  # end
+    output_console = FakeOutputConsole.new
+    app.output_console = output_console
+    app.hello
+
+    assert_equal "Hi, George!", output_console.read
+  end
 end
 

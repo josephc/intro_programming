@@ -25,4 +25,5 @@ require File.join( File.dirname( __FILE__ ), "common" )
 
 require "fibonacci"
 
-FibonacciApp.new(*ARGV).run
+app = FibonacciApp.new(*ARGV)
+app.run

@@ -1,0 +1,11 @@
+#! /usr/bin/env ruby -w
+require File.join( File.dirname( __FILE__ ), "common" )
+
+require 'hellocsv'
+
+csv_file = ARGV[0]
+unit_id = ARGV[1]
+
+HelloCsv.use_csv(csv_file)
+
+p HelloCsv.filter(unit_id)

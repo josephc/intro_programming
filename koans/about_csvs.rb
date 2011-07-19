@@ -14,13 +14,21 @@ class AboutCsvs < EdgeCase::Koan
   def test_reading_each_line_as_a_csv_row
     csv_array_of_rows = FasterCSV.readlines("example_csv.csv", :headers => true)
     
-    assert_equal __, csv_array_of_rows.size
-    assert_equal __, csv_array_of_rows[0]["_unit_id"]
+    assert_equal 100, csv_array_of_rows.size
+    assert_equal "84875899", csv_array_of_rows[0]["_unit_id"]
     assert_equal __, csv_array_of_rows[0]["_channel"]
     assert_equal __, csv_array_of_rows[0]["_golden"]
     assert_equal __, csv_array_of_rows[0]["_id"]
     assert_equal __, csv_array_of_rows[0]["_tainted"]
     assert_equal __, csv_array_of_rows[0]["THIS_COLUMN_DOES_NOT_EXIST"]
+  end
+
+  def test_filtering_a_csv_by_something
+    csv_array_of_rows = FasterCSV.readlines("example_csv.csv", :headers => true)
+    selected_rows = csv_array_of_rows.select do |row|
+      row["_unit_id"] == "84875899"
+    end
+    assert_equal __, selected_rows
   end
 
   # Reading the csv as a table does some special things to the headers
@@ -57,9 +65,9 @@ class AboutCsvs < EdgeCase::Koan
       csv_as_array << row
     end
 
-    assert_equal __, csv[0] # this should be the header
-    assert_equal __, csv[1] # this should be the first line
-    assert_equal __, csv[6] # this should be the sixth line
+    assert_equal __, csv_as_array[0] # this should be the header
+    assert_equal __, csv_as_array[1] # this should be the first line
+    assert_equal __, csv_as_array[6] # this should be the sixth line
   end
 
   # remember that arrays are indexed starting from 0
@@ -97,7 +105,7 @@ class AboutCsvs < EdgeCase::Koan
   end
 
   def test_parsing_a_csvline_from_a_string
-    assert_equal __, "3423,person,good,0.9336".to_csv
+    # assert_equal __, "3423,person,good,0.9336".to_csv
     assert_equal __, FasterCSV.parse("3423,person,good,0.9336")
   end
 

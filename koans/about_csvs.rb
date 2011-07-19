@@ -65,9 +65,9 @@ class AboutCsvs < EdgeCase::Koan
       csv_as_array << row
     end
 
-    assert_equal __, csv[0] # this should be the header
-    assert_equal __, csv[1] # this should be the first line
-    assert_equal __, csv[6] # this should be the sixth line
+    assert_equal __, csv_as_array[0] # this should be the header
+    assert_equal __, csv_as_array[1] # this should be the first line
+    assert_equal __, csv_as_array[6] # this should be the sixth line
   end
 
   # remember that arrays are indexed starting from 0
@@ -105,7 +105,7 @@ class AboutCsvs < EdgeCase::Koan
   end
 
   def test_parsing_a_csvline_from_a_string
-    assert_equal __, "3423,person,good,0.9336".to_csv
+    # assert_equal __, "3423,person,good,0.9336".to_csv
     assert_equal __, FasterCSV.parse("3423,person,good,0.9336")
   end
 
